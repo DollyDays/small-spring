@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanFactory {
 
+    //使用线程安全的哈希表做最初始的容器
     private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
     public Object getBean(String name) {
