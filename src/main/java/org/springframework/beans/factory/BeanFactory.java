@@ -1,22 +1,13 @@
 package org.springframework.beans.factory;
 
-import org.springframework.beans.BeanDefinition;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanDefinition;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
-public class BeanFactory {
+public interface BeanFactory {
 
-    //使用线程安全的哈希表做最初始的容器
-    private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
+    Object getBean(String name) throws BeansException;
 
-    public Object getBean(String name) {
-        return beanDefinitionMap.get(name).getBean();
-    }
-
-    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
-        beanDefinitionMap.put(name, beanDefinition);
-    }
+    Object getBean(String name, Object... args) throws BeansException;
 
 }
